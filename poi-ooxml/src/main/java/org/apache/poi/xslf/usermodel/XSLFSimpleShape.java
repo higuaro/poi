@@ -128,9 +128,15 @@ public abstract class XSLFSimpleShape extends XSLFShape
         }
 
         CTPoint2D off = xfrm.getOff();
+        if (off == null) {
+            return null;
+        }
         double x = Units.toPoints(POIXMLUnits.parseLength(off.xgetX()));
         double y = Units.toPoints(POIXMLUnits.parseLength(off.xgetY()));
         CTPositiveSize2D ext = xfrm.getExt();
+        if (ext == null) {
+            return null;
+        }
         double cx = Units.toPoints(ext.getCx());
         double cy = Units.toPoints(ext.getCy());
         return new Rectangle2D.Double(x, y, cx, cy);
